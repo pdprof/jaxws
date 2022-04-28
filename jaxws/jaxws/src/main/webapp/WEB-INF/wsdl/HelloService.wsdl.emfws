@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ibm.rational.test.lt.models.wscore.configuration:WSDLInformationContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.ibm.rational.test.lt.models.wscore.configuration="http:///com/ibm/rational/test/lt/models/wscore/configuration.ecore">
+  <securityOperationConfiguration>
+    <SecurityPortConfiguration aliasName="DEFAULTCONFIGURATION"/>
+  </securityOperationConfiguration>
+  <keyStore/>
+  <wsdl name="HelloService" key="HelloService">
+    <SimpleProperty value="http://jaxws.pdprof/" name="WSDLPROPERTY_TARGETNAMESPACE"/>
+    <SimpleProperty value="221b8556638c48b51aba27008e068d7024d8617b221b8556638c48b51aba27008e068d7024d8617ba95a70025307c3eb0373a6a29f3101ae3b9c86d8" name="WSDLPROPERTY_HASH"/>
+    <SimpleProperty value="1651116761042" name="WSDLPROPERTY_SYNCHROSTAMP"/>
+    <ResourceProxy portablePath="/jaxws/src/main/webapp/WEB-INF/wsdl/HelloService.wsdl" timeStamp="1651116761042"/>
+    <WsdlInformationContainer versionContainer="9.0"/>
+    <WsdlBinding name="HelloPortBinding">
+      <SimpleProperty value="SoapDocumentBinding" name="WSDLBINDINGPROPERTY_TYPE"/>
+      <SimpleProperty value="http://schemas.xmlsoap.org/soap/http" name="WSDLBINDINGPROPERTY_TRANSPORT_TYPE"/>
+      <SimpleProperty value="true" name="Soap11Binding"/>
+      <SimpleProperty value="false" name="Soap12Binding"/>
+      <SimpleProperty value="false" name="HttpBinding"/>
+      <SimpleProperty value="{http://jaxws.pdprof/}HelloDelegate" name="WSDLBINDING_SERVICE_NAME"/>
+      <WsdlOperation name="sayMessage" key="sayMessage">
+        <WsdlPort name="HelloPort" uniqueID="803165750SEPARATOR45942134-797d-40b4-bf98-0ddff6aabceb">
+          <SimpleProperty value="http://localhost:9080/jaxws/HelloService" name="WSDLPORTPROPERTY_HTTP_URL"/>
+          <in>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </in>
+          <out>
+            <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
+          </out>
+        </WsdlPort>
+        <in>
+          <SimpleProperty value="http://jaxws.pdprof/HelloDelegate/sayMessageRequest" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <WsdlPart element="true" nameSpaceURI="http://jaxws.pdprof/" localPart="sayMessage" partName="parameters"/>
+        </in>
+        <SimpleProperty value="true" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_REQUIRED"/>
+        <SimpleProperty value="" name="WSDLOPERATIONPROPERTY_SOAP_ACTION_URI"/>
+        <out>
+          <SimpleProperty value="http://jaxws.pdprof/HelloDelegate/sayMessageResponse" name="WSADDRESSING_ACTIVATOR"/>
+          <SimpleProperty value="literal" name="WSDLOPERATIONPROPERTY_ENCODING_STYLE"/>
+          <SimpleProperty name="MESSAGENAME"/>
+          <WsdlPart element="true" nameSpaceURI="http://jaxws.pdprof/" localPart="sayMessageResponse" partName="parameters"/>
+        </out>
+      </WsdlOperation>
+    </WsdlBinding>
+  </wsdl>
+</com.ibm.rational.test.lt.models.wscore.configuration:WSDLInformationContainer>

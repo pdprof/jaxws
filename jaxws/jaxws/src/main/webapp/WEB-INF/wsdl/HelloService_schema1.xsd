@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://jaxws.pdprof/" targetNamespace="http://jaxws.pdprof/" version="1.0">
+    
+  <xs:element name="sayMessage" type="tns:sayMessage"/>
+    
+  <xs:element name="sayMessageResponse" type="tns:sayMessageResponse"/>
+    
+  <xs:complexType name="sayMessage">
+        
+    <xs:sequence>
+            
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+          
+    </xs:sequence>
+      
+  </xs:complexType>
+    
+  <xs:complexType name="sayMessageResponse">
+        
+    <xs:sequence>
+            
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+          
+    </xs:sequence>
+      
+  </xs:complexType>
+  
+</xs:schema>
