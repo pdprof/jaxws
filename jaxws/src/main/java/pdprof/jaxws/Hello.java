@@ -4,7 +4,9 @@ public class Hello {
 	public String sayMessage(String msg) {
 		System.out.println("Hello.sayMessage > ");
 		try {
-			Thread.sleep(20000);
+			int wait=20000;
+			try { wait = Integer.parseInt(msg); } catch (NumberFormatException nfe) {}
+			Thread.sleep(wait);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

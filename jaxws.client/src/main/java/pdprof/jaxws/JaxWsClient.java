@@ -36,17 +36,32 @@ public class JaxWsClient extends HttpServlet {
 		if (proxyport == null)
 			proxyport = "8080";
 		
+		String msg = request.getParameter("time");
+		if (msg == null)
+			msg = "20000";
+		
+		String host = request.getParameter("host");
+		String port = request.getParameter("port");
+		if (host == null)
+			host = "localhost";
+		if (port == null)
+			port = "9443";
+		
 		HelloPortProxy proxy = new HelloPortProxy();
-		proxy.setConnectTimeout(25); // CONNECT_TIMEOUT
-		proxy.setResponseTimeout(15); // RESPONSE_TIMEOUT
+		proxy.setEndpoint(proxy.getEndpoint().replace("localhost", host).replace("9443", port));
+		proxy.setConnectTimeout(30); // CONNECT_TIMEOUT
+		proxy.setResponseTimeout(25); // RESPONSE_TIMEOUT
 		if (mode != null) {
 			proxy.setProxyHostAndPort(proxyhost, proxyport);
 			proxy.setProxyEnabled(true);
 		}
 		System.out.println("> call sayHello");
-		String msg = proxy.sayMessage("Hello!");
+		msg = proxy.sayMessage(msg);
 		System.out.println("< call sayHello");
-		response.getWriter().append("Served at: ").append(request.getContextPath()).append(" & msg = ").append(msg);
+		response.getWriter().append("Served at: ").append(request.getRequestURL()).append("?time=").append(msg)
+			.append("&proxyhost=").append(proxyhost).append("&proxyport=").append(proxyport)
+			.append("&host=").append(host).append("&port=").append(port)
+			.append(" ... Add &mode=noproxy not to use proxy");
 	}
 
 	/**

@@ -174,4 +174,11 @@ public class HelloPortProxy{
         return _getDescriptor().getProxy().sayMessage(arg0);
     }
     
+    public String getEndpoint() {
+    	return _descriptor.getEndpoint();
+    }
+    
+    public void setEndpoint(String endpoint) {
+    	_descriptor.setEndpoint(endpoint);
+    }
 }
