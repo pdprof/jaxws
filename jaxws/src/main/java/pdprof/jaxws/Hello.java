@@ -4,7 +4,7 @@ public class Hello {
 	public String sayMessage(String msg) {
 		System.out.println("Hello.sayMessage > ");
 		try {
-			Thread.sleep(6000);
+			Thread.sleep(20000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

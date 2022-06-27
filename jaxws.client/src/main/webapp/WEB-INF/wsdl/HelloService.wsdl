@@ -127,7 +127,7 @@
                         
       
       
-      <soap:address location="http://localhost:9080/jaxws/HelloService"/>
+      <soap:address location="https://10.83.226.66:9443/jaxws/HelloService"/>
                       
     
     

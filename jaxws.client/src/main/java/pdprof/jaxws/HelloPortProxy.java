@@ -22,6 +22,8 @@ public class HelloPortProxy{
         private pdprof.jaxws.HelloDelegate _proxy = null;
         private Dispatch<Source> _dispatch = null;
         private boolean _useJNDIOnly = false;
+        private String proxyhost="localhost";
+        private String proxyport="8080";
 
         public Descriptor() {
             init();
@@ -74,6 +76,7 @@ public class HelloPortProxy{
 
                 String proxyEndpointUrl = getEndpoint();
                 BindingProvider bp = (BindingProvider) _dispatch;
+                bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.RESPONSE_TIMEOUT_PROPERTY, "7");
                 String dispatchEndpointUrl = (String) bp.getRequestContext().get(BindingProvider.ENDPOINT_ADDRESS_PROPERTY);
                
                 if (!dispatchEndpointUrl.equals(proxyEndpointUrl))
@@ -101,6 +104,40 @@ public class HelloPortProxy{
             SOAPBinding binding = (SOAPBinding) ((BindingProvider) _proxy).getBinding();
             binding.setMTOMEnabled(enable);
         }
+        
+        public void setConnectTimeout(String timeout) {
+            BindingProvider bp = (BindingProvider) _proxy;
+            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.CONNECTION_TIMEOUT_PROPERTY, timeout);
+        }
+        
+        public void setResponseTimeout(String timeout) {
+            BindingProvider bp = (BindingProvider) _proxy;
+            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.RESPONSE_TIMEOUT_PROPERTY, timeout);
+        }
+        
+        public void setProxyHostAndPort(String host, String port) {
+        	proxyhost = host;
+        	try {
+        		Integer.parseInt(port); 
+        		proxyport = port;
+        	} catch (NumberFormatException e) {
+        		proxyport = "8080";
+        	}
+        }
+        
+        public void setProxyEnabled(boolean enable) {
+        	if (enable) {
+	            BindingProvider bp = (BindingProvider) _proxy;
+	            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.HTTP_PROXYHOST_PROPERTY, proxyhost);
+	            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.HTTP_PROXYPORT_PROPERTY, proxyport);
+	            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.HTTP_PROXYUSER_PROPERTY, "pdprof");
+	            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.HTTP_PROXYPASSWORD_PROPERTY, "passw0rd");
+	            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.HTTPS_PROXYHOST_PROPERTY, proxyhost);
+	            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.HTTPS_PROXYPORT_PROPERTY, proxyport);
+	            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.HTTPS_PROXYUSER_PROPERTY, "pdprof");
+	            bp.getRequestContext().put(com.ibm.wsspi.webservices.Constants.HTTPS_PROXYPASSWORD_PROPERTY, "passw0rd");
+        	}
+        }
     }
 
     public HelloPortProxy() {
@@ -112,13 +149,29 @@ public class HelloPortProxy{
         _descriptor = new Descriptor(wsdlLocation, serviceName);
         _descriptor.setMTOMEnabled(false);
     }
+    
+    public void setConnectTimeout(int timeout) {
+    	_descriptor.setConnectTimeout(Integer.toString(timeout));
+    }
+    
+    public void setResponseTimeout(int timeout) {
+    	_descriptor.setResponseTimeout(Integer.toString(timeout));
+    }
 
     public Descriptor _getDescriptor() {
         return _descriptor;
+    }
+    
+    public void setProxyEnabled(boolean enable) {
+    	_descriptor.setProxyEnabled(enable);
+    }
+    
+    public void setProxyHostAndPort(String host, String port) {
+    	_descriptor.setProxyHostAndPort(host, port);
     }
 
     public String sayMessage(String arg0) {
         return _getDescriptor().getProxy().sayMessage(arg0);
     }
-
+    
 }

@@ -19,7 +19,7 @@
       <SimpleProperty value="{http://jaxws.pdprof/}HelloDelegate" name="WSDLBINDING_SERVICE_NAME"/>
       <WsdlOperation name="sayMessage" key="sayMessage">
         <WsdlPort name="HelloPort" uniqueID="803165750SEPARATOR45942134-797d-40b4-bf98-0ddff6aabceb">
-          <SimpleProperty value="http://localhost:9080/jaxws/HelloService" name="WSDLPORTPROPERTY_HTTP_URL"/>
+          <SimpleProperty value="http://keniooi-ibm-com:9080/jaxws/HelloService" name="WSDLPORTPROPERTY_HTTP_URL"/>
           <in>
             <SimpleProperty value="DEFAULTCONFIGURATION" name="operation_security_information"/>
           </in>

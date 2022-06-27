@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.transform.Source;
+import javax.xml.ws.Dispatch;
 
 /**
  * Servlet implementation class JaxWsClient
@@ -26,7 +28,13 @@ public class JaxWsClient extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HelloPortProxy proxy = new HelloPortProxy();
+		proxy.setConnectTimeout(25); // CONNECT_TIMEOUT
+		proxy.setResponseTimeout(15); // RESPONSE_TIMEOUT
+		proxy.setProxyHostAndPort("localhost", "8080");
+		proxy.setProxyEnabled(true);
+		System.out.println("> call sayHello");
 		String msg = proxy.sayMessage("Hello!");
+		System.out.println("< call sayHello");
 		response.getWriter().append("Served at: ").append(request.getContextPath()).append(" & msg = ").append(msg);
 	}
 
