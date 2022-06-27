@@ -1,4 +1,4 @@
 FROM httpd:2.4
-COPY httpd.conf /usr/local/apache2/conf/httpd.conf
-COPY passwd.file /usr/local/apache2/passwd.file
-COPY group.file /usr/local/apache2/group.file
+COPY httpd/httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY httpd/passwd.file /usr/local/apache2/passwd.file
+COPY httpd/group.file /usr/local/apache2/group.file
