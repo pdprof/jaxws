@@ -27,11 +27,22 @@ public class JaxWsClient extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String mode = request.getParameter("mode");
+		
+		String proxyhost = request.getParameter("proxyhost");
+		String proxyport = request.getParameter("proxyport");
+		if (proxyhost == null) 
+			proxyhost = "localhost";
+		if (proxyport == null)
+			proxyport = "8080";
+		
 		HelloPortProxy proxy = new HelloPortProxy();
 		proxy.setConnectTimeout(25); // CONNECT_TIMEOUT
 		proxy.setResponseTimeout(15); // RESPONSE_TIMEOUT
-		proxy.setProxyHostAndPort("localhost", "8080");
-		proxy.setProxyEnabled(true);
+		if (mode != null) {
+			proxy.setProxyHostAndPort(proxyhost, proxyport);
+			proxy.setProxyEnabled(true);
+		}
 		System.out.println("> call sayHello");
 		String msg = proxy.sayMessage("Hello!");
 		System.out.println("< call sayHello");
