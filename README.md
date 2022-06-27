@@ -1,5 +1,5 @@
-# servlet
- 
+# Java API for XML-Based Web Services (JAX-WS) 
+Java API for XML-Based Web Services (JAX-WS)  
 
 ## Import eclipse project
 
@@ -9,10 +9,10 @@ git clone https://github.com/pdprof/jaxws.git
 
 - Start eclipse
 - Import General > Projects from Folder or Archive
-- Select cloned git directory as Import source and Folder jaxws and jaxwsClient as Import Maven
+- Select cloned git directory as Import source and Folder jaxws, jaxws.client and proxy.
 - right click on jaxws project.
 - select Maven > Update project
-- Check jaxws and jaxwsClient and push OK button.
+- Check jaxws and jaxws.client and push OK button.
 
 
 ## Test your project on your local liberty
