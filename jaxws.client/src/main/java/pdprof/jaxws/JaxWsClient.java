@@ -51,7 +51,7 @@ public class JaxWsClient extends HttpServlet {
 		proxy.setEndpoint(proxy.getEndpoint().replace("localhost", host).replace("9443", port));
 		proxy.setConnectTimeout(30); // CONNECT_TIMEOUT
 		proxy.setResponseTimeout(25); // RESPONSE_TIMEOUT
-		if (mode != null) {
+		if (mode == null || mode.equalsIgnoreCase("proxy")) {
 			proxy.setProxyHostAndPort(proxyhost, proxyport);
 			proxy.setProxyEnabled(true);
 		}
@@ -60,8 +60,7 @@ public class JaxWsClient extends HttpServlet {
 		System.out.println("< call sayHello");
 		response.getWriter().append("Served at: ").append(request.getRequestURL()).append("?time=").append(msg)
 			.append("&proxyhost=").append(proxyhost).append("&proxyport=").append(proxyport)
-			.append("&host=").append(host).append("&port=").append(port)
-			.append(" ... Add &mode=noproxy not to use proxy");
+			.append("&host=").append(host).append("&port=").append(port).append("&mode=").append(mode);
 	}
 
 	/**
